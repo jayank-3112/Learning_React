@@ -1,23 +1,24 @@
-
-import MyHeading1 from "./components/MyHeading";
-import { MyHeading2 as CustomHead2, MyHeading3, MyHeading4 } from "./components/MyHeading";
-const a = "Page-1"
+import Header from './components/Header.jsx';
+import "./styles/App.css";
+import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
+import Home from './components/Home.jsx';
+import About from './components/About.jsx';
+import Contact from './components/Contact.jsx';
+import { PageNotFound } from './components/PageNotFound.jsx';
+import { Product } from './components/Product.jsx';
 function App() {
-  const name = 'Jayank Mahaur';
-  const element = <h2>Hello, {name}</h2>;  
   return (
-    <>
-      <div>
-        <MyHeading1 name = "Chotu" text="Nice One" price = {2000}/>
-        <h1>Welcome to {a} </h1>
-        {element}
-      </div>
-      <div>
-        <CustomHead2 value = {3000}/>
-        <MyHeading3 />
-        <MyHeading4 />
-      </div>
-    </>
+    <Router>
+      <Header />
+      <Routes>  
+        <Route path ="/" element={<Home />} />
+        <Route path ="/about" element={<About />} />
+        <Route path ="/contact" element={<Contact />} />
+        <Route path ="/product/:ide" element={<Product />} />
+        <Route path ="*" element={<PageNotFound />} />
+      </Routes>
+      {/* <Footer /> */}
+    </Router>
   );
 };
 export default App;
